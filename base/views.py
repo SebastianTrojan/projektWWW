@@ -5,7 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
 from .models import User, Article, Topic, Message
-from .forms import ArticleForm, UserForm, MyUserCreationForm
+from .forms import ArticleForm, UserForm, MyUserCreationForm, MyForm
+from django.shortcuts import render
 
 def loginPage(request):
     page = 'login'
@@ -84,6 +85,8 @@ def article(request, pk):
     context = {'article': article, 'article_messages': article_messages}
     return render(request, 'base/article.html', context)
 
+
+
 @login_required(login_url='login')
 def createArticle(request):
     form = ArticleForm()
@@ -112,6 +115,10 @@ def createArticle(request):
 
     context = {'form': form}
     return render(request, 'base/article_form.html', context)
+
+def index(request):
+    form = MyForm()
+    return render(request, 'index.html', {'form': form})
 
 @login_required(login_url='login')
 def editArticle(request, pk):

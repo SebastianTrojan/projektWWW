@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from ckeditor.fields import RichTextField
 
 class User(AbstractUser):
     is_author = models.BooleanField('author status', default=False)
@@ -23,8 +24,8 @@ class Article(models.Model):
     topic = models.ForeignKey(Topic, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length = 200)
     description = models.TextField(max_length = 200)
-    body = models.TextField()
-    #image = models.ImageField(null=True, default="def.jpg")
+    body = RichTextField()
+    image = models.ImageField(null=True, default="logo.webp")
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
 

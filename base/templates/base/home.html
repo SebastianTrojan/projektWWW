@@ -7,26 +7,26 @@
 
      <div class = 'home-container'>
         {% if request.user.is_author%}
-        <a href="{% url 'create-article' %}">Create an article</a>
+        <div class="action-buttons">
+            <a href="{% url 'home' %}?q={{request.user.username}}">My Articles</a>
+            <a href="{% url 'create-article' %}">Create an article</a>
+        </div>
         {% endif %}
         <div class="blog-container">
             {% for article in articles %}
-            <!-- <div>
-                {% if request.user == article.author %}
-                <a href="{% url 'edit-article' article.id %}">Edit</a>
-                <a href="{% url 'delete-article' article.id %}">Delete</a>
-                {% endif %}
-                <span>@{{ article.author.username }} {{article.created|timesince}} ago</span>
-                <h5>{{article.id}} -- <a href="{% url 'article' article.id %}">{{article.title}}</a></h5>
-                <hr>
-            </div> -->
             <article class="blog-post">
-                <img src="{{request.user.avatar.url}}" alt="Article Image">
+                <img src="{{article.image.url}}" alt="Article Image">
                 <div class="post-content">
                     <h2 class="post-title"><a href="{% url 'article' article.id %}">{{article.title}}</a></h2>
                     <p class="post-description">{{article.description}}.</p>
                     <p class="post-meta">Author: @{{ article.author.username }} | Date: {{article.created}}</p>
                 </div>
+                {% if request.user == article.author%}
+                <div>
+                    <a href="{% url 'edit-article' article.id %}" class="article-buttons">Edit</a>
+                    <a href="{% url 'delete-article' article.id %}" class="article-buttons">Delete</a>
+                </div>
+                {% endif %}
             </article>
             {% endfor %}
         </div>

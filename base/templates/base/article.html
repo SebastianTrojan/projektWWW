@@ -1,7 +1,6 @@
 {% extends 'main.html' %}
 
 {% block content %}
-
 <div class="article-container">
 
     <div>
@@ -12,8 +11,9 @@
         <div class="article-body">
             <div>
                 <p>{{article.body}}</p>
+                
                 <hr>
-                <p>Autor: {{article.author.us}}</p>
+                <p>Autor: {{article.author.username}}</p>
       
             </div>
 
@@ -47,5 +47,6 @@
     </div>
 
 </div>
-
 {% endblock content %}
+
+

@@ -2,12 +2,19 @@
 
 {% block content %}
 
-<div>
-    <form method="POST" action="">
+<form method="post">
+    {% csrf_token %}
+    {{ form.media }}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+</form>
+
+{% endblock content %}
+
+<!-- <div class="form-container">
+    <form method="POST" action="" enctype="multipart/form-data">
         {% csrf_token %}
         {{form.as_p}}
         <input type="submit" value="Submit" />
     </form>
-</div>
-
-{% endblock content %}
+</div> -->

@@ -1,7 +1,8 @@
+from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from .models import Article, User
-
+from ckeditor.widgets import CKEditorWidget
 
 class MyUserCreationForm(UserCreationForm):
     class Meta:
@@ -10,10 +11,19 @@ class MyUserCreationForm(UserCreationForm):
 
 
 class ArticleForm(ModelForm):
+    # class Meta:
+    #     model = Article
+    #     fields = '__all__'
+    #     exclude = ['author']
+    #     widgets = {'body': CKEditorWidget()}
+    body = forms.CharField(widget=CKEditorWidget())
     class Meta:
         model = Article
         fields = '__all__'
-        exclude = ['author']
+    
+
+class MyForm(forms.Form):
+    content = forms.CharField(widget=CKEditorWidget())
 
 
 class UserForm(ModelForm):
