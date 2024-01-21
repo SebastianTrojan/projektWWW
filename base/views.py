@@ -87,6 +87,8 @@ def article(request, pk):
 @login_required(login_url='login')
 def createArticle(request):
     form = ArticleForm()
+    if not request.user.is_author :
+        return HttpResponse('Your are not allowed here!!')
     #topics = Topic.objects.all()
     if request.method == 'POST':
         form = ArticleForm(request.POST)

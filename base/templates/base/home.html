@@ -3,11 +3,15 @@
 {% block content %}
 
 
-    <div clas = 'home-container'>
+
+
+     <div class = 'home-container'>
+        {% if request.user.is_author%}
         <a href="{% url 'create-article' %}">Create an article</a>
-        <div>
+        {% endif %}
+        <div class="blog-container">
             {% for article in articles %}
-            <div>
+            <!-- <div>
                 {% if request.user == article.author %}
                 <a href="{% url 'edit-article' article.id %}">Edit</a>
                 <a href="{% url 'delete-article' article.id %}">Delete</a>
@@ -15,12 +19,19 @@
                 <span>@{{ article.author.username }} {{article.created|timesince}} ago</span>
                 <h5>{{article.id}} -- <a href="{% url 'article' article.id %}">{{article.title}}</a></h5>
                 <hr>
-            </div>
+            </div> -->
+            <article class="blog-post">
+                <img src="{{request.user.avatar.url}}" alt="Article Image">
+                <div class="post-content">
+                    <h2 class="post-title"><a href="{% url 'article' article.id %}">{{article.title}}</a></h2>
+                    <p class="post-description">{{article.description}}.</p>
+                    <p class="post-meta">Author: @{{ article.author.username }} | Date: {{article.created}}</p>
+                </div>
+            </article>
             {% endfor %}
         </div>
 
     </div>
-
 
 
 {% endblock content %}

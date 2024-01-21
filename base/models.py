@@ -2,11 +2,12 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
+    is_author = models.BooleanField('author status', default=False)
     name = models.CharField(max_length=200, null=True)
     email = models.EmailField(unique=True, null=True)
     bio = models.TextField(null=True)
 
-    avatar = models.ImageField(null=True, default="avatar.svg")
+    avatar = models.ImageField(null=True, default="def.jpg")
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -23,7 +24,7 @@ class Article(models.Model):
     title = models.CharField(max_length = 200)
     description = models.TextField(max_length = 200)
     body = models.TextField()
-    #participants = 
+    #image = models.ImageField(null=True, default="def.jpg")
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
 

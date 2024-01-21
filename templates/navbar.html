@@ -1,7 +1,4 @@
-<a href="/">
-    <h1>LOGO</h1>
-</a>
-
+<!-- 
 <form method ="GET" action="{% url 'home' %}">
     <input type="text" name="q" placeholder = "Serach...">
 </form>
@@ -10,11 +7,47 @@
 <p>You are logged as @{{request.user.username}}</p>
 <a href="{% url 'logout' %}">Logout</a>
 <a href="{% url 'update-user' %}">Update user</a> 
-<div class="avatar avatar--medium active">
+<div class="avatar">
     <img src="{{request.user.avatar.url}}" />
 </div></a>
 {% else %}
 <a href="{% url 'login' %}">Login</a>
 
 {% endif %}
-<hr>
+<hr> -->
+{% load static %}
+<header class="navbar">
+    <div class="logo">
+        <a href="/">
+            <img src="{% static 'images/logo.webp' %}" alt="Logo">
+        </a>
+    </div>
+    <nav class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">Technology</a>
+        <a href="#">Travel</a>
+        <a href="#">Food</a>
+        <!-- Add more topics as needed -->
+    </nav>
+    <div class="search-bar">
+        <form method ="GET" action="{% url 'home' %}">
+            <input type="text" name="q" placeholder = "Serach...">
+        </form>
+    </div>
+    {% if request.user.is_authenticated %}
+    <div class="profile-wrapper">
+        <img src="{{request.user.avatar.url}}" alt="Profile Photo" id="profile-avatar">
+        <div class="profile-dropdown" id="profile-dropdown">
+            <a href="{% url 'logout' %}">Logout</a>
+            <a href="{% url 'update-user' %}">Update user</a> 
+        </div>
+    </div>
+    {% else %}
+    <div class="nav-links">
+        <a href="{% url 'login' %}">Login/Register</a>
+    </div>
+    {% endif %}
+</header>
+
+
+
