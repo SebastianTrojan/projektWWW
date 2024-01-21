@@ -1,8 +1,7 @@
 {% extends 'main.html' %}
 
 {% block content %}
-          <h3>Edit your profile</h3>
-      <div class="layout__body">
+      <div class="form-container">
         <form class="form" action="" method="POST" enctype="multipart/form-data">
           {% csrf_token %}
 
@@ -14,8 +13,7 @@
           {% endfor %}
 
 
-          <div class="form__action">
-            <a href="index.html">Cancel</a>
+          <div>
             <button type="submit">Update</button>
           </div>
         </form>

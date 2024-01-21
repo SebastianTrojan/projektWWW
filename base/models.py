@@ -24,7 +24,7 @@ class Article(models.Model):
     title = models.CharField(max_length = 200)
     description = models.TextField(max_length = 200)
     body = models.TextField()
-    #image = models.ImageField(null=True, default="def.jpg")
+    image = models.ImageField(null=True, default="logo.webp")
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
 

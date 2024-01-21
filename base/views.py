@@ -6,6 +6,7 @@ from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
 from .models import User, Article, Topic, Message
 from .forms import ArticleForm, UserForm, MyUserCreationForm
+from django.shortcuts import render
 
 def loginPage(request):
     page = 'login'
@@ -83,6 +84,8 @@ def article(request, pk):
 
     context = {'article': article, 'article_messages': article_messages}
     return render(request, 'base/article.html', context)
+
+
 
 @login_required(login_url='login')
 def createArticle(request):
