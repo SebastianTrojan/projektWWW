@@ -1,0 +1,26 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+
+    <div clas = 'home-container'>
+        <a href="{% url 'create-article' %}">Create an article</a>
+        <div>
+            {% for article in articles %}
+            <div>
+                {% if request.user == article.author %}
+                <a href="{% url 'edit-article' article.id %}">Edit</a>
+                <a href="{% url 'delete-article' article.id %}">Delete</a>
+                {% endif %}
+                <span>@{{ article.author.username }} {{article.created|timesince}} ago</span>
+                <h5>{{article.id}} -- <a href="{% url 'article' article.id %}">{{article.title}}</a></h5>
+                <hr>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+
+
+{% endblock content %}
