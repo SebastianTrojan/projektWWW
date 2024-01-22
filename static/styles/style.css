@@ -167,14 +167,17 @@ body {
 
 
 .form-container {
-    max-width: 400px;
+    width: 100%;
+    max-width: 600px;
     margin: 0 auto;
     padding: 20px;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
 }
+
 
 .form-container label {
     display: block;
@@ -201,6 +204,7 @@ body {
 .form-container input[type="submit"]:hover {
     background-color: #258cd1;
 }
+
 
 .message {
     text-align: center;
@@ -255,4 +259,94 @@ body {
     background-color: #f04141;
     color: #fff;
   
+}
+
+
+/* Style for the article container */
+.article-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+/* Style for the article title */
+.article-container h1 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Style for the hr under the title */
+.article-container hr {
+    border: 0;
+    height: 1px;
+    background: #ccc;
+    margin: 10px 0;
+}
+
+/* Style for the article body */
+.article-container .article-body {
+    margin-bottom: 20px;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Style for the hr under the article body */
+.article-container .article-body hr {
+    border: 0;
+    height: 1px;
+    background: #ccc;
+    margin: 20px 0;
+}
+
+/* Style for the comment wrapper */
+.article-container .comment-wrapper {
+    margin-bottom: 20px;
+}
+
+/* Style for individual comments */
+.article-container .comment-wrapper div {
+    margin-bottom: 15px;
+}
+
+/* Style for the comment timestamp */
+.article-container .comment-wrapper small {
+    color: #888;
+}
+
+/* Style for the hr under each comment */
+.article-container .comment-wrapper hr {
+    border: 0;
+    height: 1px;
+    background: #ccc;
+    margin: 10px 0;
+}
+
+/* Style for the comment form */
+.article-container .comment-form input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+/* Style for the submit button in the comment form */
+.article-container .comment-form input[type="submit"] {
+    width: 100%;
+    background-color: #3498db;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.article-container .comment-form input[type="submit"]:hover {
+    background-color: #258cd1;
 }

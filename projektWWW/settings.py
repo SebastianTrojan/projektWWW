@@ -45,14 +45,15 @@ INSTALLED_APPS = [
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_CONFIGS = {
     'default': {
-        'width': '100%',
+        'width': '200%',
         'height': 300,
         'toolbar': 'Custom',
         'toolbar_Custom': [
-            ['Bold', 'Italic', 'Underline', 'Strike'],
+            ['Bold', 'Italic', 'Underline', 'RemoveFormat','Strike'],
             ['NumberedList', 'BulletedList', 'Blockquote'],
-            ['Link', 'Unlink'],
-            ['RemoveFormat'],
+            ['Link', 'Unlink', 'Image', 'Table'],
+            ['TextColor', 'BGColor'],
+            ['Styles', 'Format', 'Font', 'FontSize'],
             ['Source'],
         ],
     },

@@ -11,19 +11,14 @@ class MyUserCreationForm(UserCreationForm):
 
 
 class ArticleForm(ModelForm):
-    # class Meta:
-    #     model = Article
-    #     fields = '__all__'
-    #     exclude = ['author']
-    #     widgets = {'body': CKEditorWidget()}
     body = forms.CharField(widget=CKEditorWidget())
     class Meta:
         model = Article
         fields = '__all__'
     
 
-class MyForm(forms.Form):
-    content = forms.CharField(widget=CKEditorWidget())
+# class MyForm(forms.Form):
+#     content = forms.CharField(widget=CKEditorWidget())
 
 
 class UserForm(ModelForm):
