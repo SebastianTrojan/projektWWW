@@ -5,48 +5,53 @@
 
     <div>
 
-        <h1>{{article.title}}</h1>
-        <hr>
+        <h1>{{ article.title }}</h1>
+        <hr class="article-separator">
 
         <div class="article-body">
-            <div>
+            <div class="article-content">
                 {{ article.body|safe }}
-                
-                <hr>
-                <p>Autor: {{article.author.username}}</p>
-      
+                <hr class="article-content-separator">
+
+                <p class="article-author">Author: <img src="{{article.author.avatar.url}}" alt="Profile Photo" id="article-avatar"> {{ article.author.username }}</p>
             </div>
-
-
-        <div class="comment-wrapper">
-            <h3>Conversation</h3>
-            <hr>
-
-            {% for message in article_messages %}
-            <div>
-                {% if request.user == message.user %}
-                <a href="{% url 'delete-message' message.id %}">Delete</a>
-                {% endif %}
-                <small>@{{message.user.username}} {{message.created|timesince}} ago </small>
-                <p>{{message.body}}</p>
-                <hr>
-            </div>
-            {% endfor %}
         </div>
 
+        <div class="comment-section">
+            <h3 class="conversation-title">Conversation</h3>
+            <hr class="conversation-separator">
 
-        {% if request.user.is_authenticated %}
-        <div class="comment-form">
-            <form method="POST" action="">
-                {% csrf_token %}
-                <input type="text" name="body" placeholder="Write you message here..." />
-            </form>
+            <div class="comment-wrapper">
+                {% for message in article_messages %}
+                <div class="comment">
+                    <div class="comment-actions">
+                        {% if request.user == message.user %}
+                        <a href="{% url 'delete-message' message.id %}" class="delete-comment">Delete</a>
+                        <a href="#" class="edit-comment">Edit</a>
+                        {% endif %}
+                    </div>
+                    <img src="{{message.user.avatar.url}}" alt="Profile Photo" id="message-avatar">
+                    <small class="comment-metadata">@{{ message.user.username }} {{ message.created|timesince }} ago</small>
+                    <p class="comment-body">{{ message.body }}</p>
+                    <hr class="comment-separator">
+                </div>
+                {% endfor %}
+            </div>
+
+            {% if request.user.is_authenticated %}
+            <div class="comment-form">
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <input type="text" name="body" placeholder="Write your message here..." class="comment-input" />
+                    <button type="submit" class="comment-submit-button">Submit</button>
+                </form>
+            </div>
+            {% endif %}
+
         </div>
-        {% endif %}
 
     </div>
 
 </div>
 {% endblock content %}
-
 

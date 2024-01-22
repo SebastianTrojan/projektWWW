@@ -1,20 +1,3 @@
-<!-- 
-<form method ="GET" action="{% url 'home' %}">
-    <input type="text" name="q" placeholder = "Serach...">
-</form>
-
-{% if request.user.is_authenticated %}
-<p>You are logged as @{{request.user.username}}</p>
-<a href="{% url 'logout' %}">Logout</a>
-<a href="{% url 'update-user' %}">Update user</a> 
-<div class="avatar">
-    <img src="{{request.user.avatar.url}}" />
-</div></a>
-{% else %}
-<a href="{% url 'login' %}">Login</a>
-
-{% endif %}
-<hr> -->
 {% load static %}
 <header class="navbar">
     <div class="logo">
@@ -23,11 +6,9 @@
         </a>
     </div>
     <nav class="nav-links">
-        <a href="#">Home</a>
-        <a href="#">Technology</a>
-        <a href="#">Travel</a>
-        <a href="#">Food</a>
-        <!-- Add more topics as needed -->
+        {% for topic in topics %}
+        <a href="#">{{topic.name}}</a>
+        {% endfor %}
     </nav>
     <div class="search-bar">
         <form  class = "search-form" method ="GET" action="{% url 'home' %}">

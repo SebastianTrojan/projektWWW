@@ -65,10 +65,10 @@ def home(request):
         Q(title__icontains=q) |
         Q(description__icontains=q)|
         Q(author__username__icontains=q)
-
     )
+    topics = Topic.objects.all()
 
-    context = {"articles": articles}
+    context = {"articles": articles, "topics": topics}
     return render(request, 'base/home.html', context)
 
 def article(request, pk):
@@ -85,7 +85,11 @@ def article(request, pk):
     context = {'article': article, 'article_messages': article_messages}
     return render(request, 'base/article.html', context)
 
-
+# def topicsPage(request):
+#     # q = request.GET.get('q') if request.GET.get('q') != None else ''
+#     # topics = Topic.objects.filter(name__icontains=q)
+#     topics = Topic.objects.get()
+#     return render(request, 'base/topics.html', {'topics': topics})
 
 
 
@@ -187,10 +191,7 @@ def updateUser(request):
     return render(request, 'base/update-user.html', {'form': form})
 
 
-# def topicsPage(request):
-#     q = request.GET.get('q') if request.GET.get('q') != None else ''
-#     topics = Topic.objects.filter(name__icontains=q)
-#     return render(request, 'base/topics.html', {'topics': topics})
+
 
 
 # def activityPage(request):
