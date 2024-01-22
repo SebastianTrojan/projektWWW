@@ -87,6 +87,8 @@ def article(request, pk):
 
 
 
+
+
 @login_required(login_url='login')
 def createArticle(request):
     form = ArticleForm()
