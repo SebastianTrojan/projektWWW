@@ -15,11 +15,7 @@ class ArticleForm(ModelForm):
     class Meta:
         model = Article
         fields = '__all__'
-    
-
-# class MyForm(forms.Form):
-#     content = forms.CharField(widget=CKEditorWidget())
-
+        exclude = ['author', 'is_published']
 
 class UserForm(ModelForm):
     class Meta:

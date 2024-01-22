@@ -59,13 +59,24 @@ def registerPage(request):
 
 def home(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
+    status = request.GET.get('status') if request.GET.get('status') != None else ''
 
-    articles = Article.objects.filter(
-        Q(topic__name__icontains=q) |
-        Q(title__icontains=q) |
-        Q(description__icontains=q)|
-        Q(author__username__icontains=q)
-    )
+    if status =='':
+        articles = Article.objects.filter(
+            Q(topic__name__icontains=q) |
+            Q(title__icontains=q) |
+            Q(description__icontains=q)|
+            Q(author__username__icontains=q)
+        )
+    else:
+        articles = Article.objects.filter(
+            Q(topic__name__icontains=q) |
+            Q(title__icontains=q) |
+            Q(description__icontains=q)|
+            Q(author__username__icontains=q)&
+            Q(is_published=status)
+
+        )
     topics = Topic.objects.all()
 
     context = {"articles": articles, "topics": topics}
@@ -104,7 +115,10 @@ def createArticle(request):
         if form.is_valid():
             article = form.save(commit=False)
             article.author = request.user
+            if 'publish_button' in request.POST:
+                article.is_published = True
             article.save()
+
             return redirect('home')
 
         #topic_name = request.POST.get('topic')
@@ -144,7 +158,10 @@ def editArticle(request, pk):
 #         return redirect('home')
         form = ArticleForm(request.POST, instance=article)
         if form.is_valid():
-            form.save()
+            article = form.save(commit=False)
+            if 'publish_button' in request.POST:
+                article.is_published = True
+            article.save()
             return redirect('home')
 
     context = {'form': form}

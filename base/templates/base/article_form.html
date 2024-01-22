@@ -6,7 +6,8 @@
         {% csrf_token %}
         {{ form.media }}
         {{ form.as_p }}
-        <button type="submit">Submit</button>
+        <button type="Submit">Save</button>
+        <button type="Submit" name="publish_button">Publish</button>
     </form>
 </div>
 {% endblock content %}

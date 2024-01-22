@@ -8,13 +8,22 @@
      <div class = 'home-container'>
         {% if request.user.is_author%}
         <div class="action-buttons">
-            <a href="{% url 'home' %}?q={{request.user.username}}">My Articles</a>
+            <div class="dropdown">
+                <button class="dropbtn"><a href="{% url 'home' %}?q={{request.user.username}}">My articles</a></button>
+                <div class="dropdown-content">
+                    <a href="{% url 'home' %}?q={{request.user.username}}&status=True">Published</a>
+                    <a href="{% url 'home' %}?q={{request.user.username}}&status=False">Saved</a>
+                </div>
+            </div>
+            <div class="create-button">
             <a href="{% url 'create-article' %}">Create an article</a>
+            </div>
         </div>
         {% endif %}
         <div class="blog-container">
             {% for article in articles %}
             <article class="blog-post">
+                {% if article.is_published or request.user == article.author %}
                 <img src="{{article.image.url}}" alt="Article Image">
                 <div class="post-content">
                     <h2 class="post-title"><a href="{% url 'article' article.id %}">{{article.title}}</a></h2>
@@ -26,6 +35,7 @@
                     <a href="{% url 'edit-article' article.id %}" class="article-buttons">Edit</a>
                     <a href="{% url 'delete-article' article.id %}" class="article-buttons">Delete</a>
                 </div>
+                {% endif %}
                 {% endif %}
             </article>
             {% endfor %}

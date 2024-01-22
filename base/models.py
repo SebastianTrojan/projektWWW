@@ -7,9 +7,7 @@ class User(AbstractUser):
     name = models.CharField(max_length=200, null=True)
     email = models.EmailField(unique=True, null=True)
     bio = models.TextField(null=True)
-
     avatar = models.ImageField(null=True, default="def.jpg")
-
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
@@ -26,6 +24,7 @@ class Article(models.Model):
     description = models.TextField(max_length = 200)
     body = RichTextField()
     image = models.ImageField(null=True, default="logo.webp")
+    is_published = models.BooleanField(default=False)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
 
