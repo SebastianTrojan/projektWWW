@@ -6,7 +6,7 @@
         </a>
     </div>
     <nav class="nav-links">
-        {% for topic in topics %}
+        {% for topic in all_topics %}
         <a href="{% url 'home' %}?q={{topic.name}}">{{topic.name}}</a>
         {% endfor %}
     </nav>

@@ -1,7 +1,7 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<div class="form-container">
+<div class="form-container article-form">
     <form class = "wide-form" method="post">
         {% csrf_token %}
         {{ form.media }}
