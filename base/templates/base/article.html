@@ -10,7 +10,7 @@
 
         <div class="article-body">
             <div>
-                <p>{{article.body}}</p>
+                {{ article.body|safe }}
                 
                 <hr>
                 <p>Autor: {{article.author.username}}</p>
