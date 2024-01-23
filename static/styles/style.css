@@ -5,7 +5,7 @@ body {
     background-color: white;
 }
 
-/* styles for blog */
+/* styles for home */
 .blog-container {
     max-width: 1000px;
     margin: 20px auto;
@@ -166,8 +166,6 @@ body {
 }
 
 
-
-
 .username {
     color: #fff;
 }
@@ -209,10 +207,7 @@ body {
 }
 
 
-
 /* styles for forms */
-
-
 .form-container {
     width: 100%;
     max-width: 600px;
@@ -256,7 +251,7 @@ body {
     background-color: #258cd1;
 }
 
-/* styles for article */
+/* styles for main */
 .message {
     text-align: center;
     margin-top: 20px;
@@ -276,6 +271,7 @@ body {
 }
 
 
+/* styles for delete */
 .confirmation-message {
     text-align: center;
     margin-bottom: 15px;
@@ -312,7 +308,7 @@ body {
   
 }
 
-
+/* styles for article */
 .article-container {
     max-width: 800px;
     margin: 0 auto;
