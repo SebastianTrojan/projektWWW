@@ -96,22 +96,13 @@ def article(request, pk):
     context = {'article': article, 'article_messages': article_messages}
     return render(request, 'base/article.html', context)
 
-# def topicsPage(request):
-#     # q = request.GET.get('q') if request.GET.get('q') != None else ''
-#     # topics = Topic.objects.filter(name__icontains=q)
-#     topics = Topic.objects.get()
-#     return render(request, 'base/topics.html', {'topics': topics})
-
-
 
 @login_required(login_url='login')
 def createArticle(request):
-    form = ArticleForm()
     if not request.user.is_author :
         return HttpResponse('Your are not allowed here!!')
-    #topics = Topic.objects.all()
     if request.method == 'POST':
-        form = ArticleForm(request.POST)
+        form = ArticleForm(request.POST, request.FILES)
         if form.is_valid():
             article = form.save(commit=False)
             article.author = request.user
@@ -120,43 +111,20 @@ def createArticle(request):
             article.save()
 
             return redirect('home')
-
-        #topic_name = request.POST.get('topic')
-        #topic, created = Topic.objects.get_or_create(name=topic_name)
-
-        # Article.objects.create(
-        #     author=request.user,
-        #     topic=request.POST.get('topic'),
-        #     tilte=request.POST.get('title'),
-        #     description=request.POST.get('description'),
-        #     body=request.POST.get('body'),
-        # )
-        # return redirect('home')
-
     context = {'form': form}
     return render(request, 'base/article_form.html', context)
 
-# def index(request):
-#     form = MyForm()
-#     return render(request, 'index.html', {'form': form})
 
 @login_required(login_url='login')
 def editArticle(request, pk):
     article = Article.objects.get(id=pk)
     form = ArticleForm(instance=article)
-#     topics = Topic.objects.all()
+
     if request.user != article.author:
         return HttpResponse('Your are not allowed here!!')
 
     if request.method == 'POST':
-#         topic_name = request.POST.get('topic')
-#         topic, created = Topic.objects.get_or_create(name=topic_name)
-#         room.name = request.POST.get('name')
-#         room.topic = topic
-#         room.description = request.POST.get('description')
-#         room.save()
-#         return redirect('home')
-        form = ArticleForm(request.POST, instance=article)
+        form = ArticleForm(request.POST, request.FILES, instance=article)
         if form.is_valid():
             article = form.save(commit=False)
             if 'publish_button' in request.POST:
@@ -206,10 +174,3 @@ def updateUser(request):
             return redirect('home')
 
     return render(request, 'base/update-user.html', {'form': form})
-
-
-
-
-def topics(request):
-    topics = Topic.objects.all()
-    return {'topics': topics}

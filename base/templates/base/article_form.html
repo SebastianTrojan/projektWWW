@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="form-container article-form">
-    <form class = "wide-form" method="post">
+    <form class = "wide-form" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.media }}
         {{ form.as_p }}
@@ -11,11 +11,3 @@
     </form>
 </div>
 {% endblock content %}
-
-<!-- <div class="form-container">
-    <form method="POST" action="" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" value="Submit" />
-    </form>
-</div> -->

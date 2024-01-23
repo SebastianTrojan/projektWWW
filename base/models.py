@@ -4,9 +4,9 @@ from ckeditor.fields import RichTextField
 
 class User(AbstractUser):
     is_author = models.BooleanField('author status', default=False)
-    name = models.CharField(max_length=200, null=True)
+    name = models.CharField(max_length=200, null=False)
     email = models.EmailField(unique=True, null=True)
-    bio = models.TextField(null=True)
+    bio = models.TextField(null=False)
     avatar = models.ImageField(null=True, default="def.jpg")
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -43,7 +43,7 @@ class Message(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ['-updated', '-created']
+        ordering = ['updated', 'created']
 
     def __str__(self):
         return self.body[0:50]
