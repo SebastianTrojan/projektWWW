@@ -19,6 +19,7 @@
     <div class="profile-wrapper">
         <img src="{{request.user.avatar.url}}" alt="Profile Photo" id="profile-avatar">
         <div class="profile-dropdown" id="profile-dropdown">
+            <a>{{request.user.name}} {{request.user.surname}}</a>
             <a href="{% url 'logout' %}">Logout</a>
             <a href="{% url 'update-user' %}">Update user</a> 
         </div>

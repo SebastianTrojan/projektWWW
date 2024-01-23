@@ -7,7 +7,7 @@ from ckeditor.widgets import CKEditorWidget
 class MyUserCreationForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ['name', 'username', 'email', 'password1', 'password2']
+        fields = ['name', 'surname','username', 'email', 'password1', 'password2']
 
 
 class ArticleForm(ModelForm):
@@ -20,4 +20,4 @@ class ArticleForm(ModelForm):
 class UserForm(ModelForm):
     class Meta:
         model = User
-        fields = ['avatar','name', 'username', 'email', 'bio']
+        fields = ['avatar','name','surname', 'username', 'email', 'bio']

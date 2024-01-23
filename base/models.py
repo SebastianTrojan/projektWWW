@@ -4,7 +4,8 @@ from ckeditor.fields import RichTextField
 
 class User(AbstractUser):
     is_author = models.BooleanField('author status', default=False)
-    name = models.CharField(max_length=200, null=False)
+    name = models.CharField(max_length=200, null=True)
+    surname = models.CharField(max_length=200, null=True)
     email = models.EmailField(unique=True, null=True)
     bio = models.TextField(null=False)
     avatar = models.ImageField(null=True, default="def.jpg")

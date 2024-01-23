@@ -99,6 +99,7 @@ def article(request, pk):
 
 @login_required(login_url='login')
 def createArticle(request):
+    form = ArticleForm()
     if not request.user.is_author :
         return HttpResponse('Your are not allowed here!!')
     if request.method == 'POST':

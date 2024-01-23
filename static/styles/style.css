@@ -153,7 +153,8 @@ body {
 .nav-links a {
     color: #fff;
     text-decoration: none;
-    margin: 0 15px;
+    margin: 0 25px;
+    font-size: 23px;
 }
 
 .search-bar {
@@ -189,7 +190,7 @@ body {
     background-color: #f9f9f9;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     z-index: 1;
-    width: 150px;
+    width: 200px;
 }
 
 .profile-dropdown a {
